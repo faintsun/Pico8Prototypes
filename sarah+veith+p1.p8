@@ -1,0 +1,328 @@
+pico-8 cartridge // http://www.pico-8.com
+version 16
+__lua__
+curr = 1
+
+cc = 0
+c1 = 8
+c2 = 9
+c3 = 10
+c4 = 11
+c5 = 12
+c6 = 13
+c7 = 14
+c8 = 15
+c9 = 3
+
+b1x = 80 --30
+b1y = 100 --30
+
+b2x = 10 --70
+b2y = 100 --30
+
+b3x = 10 --40
+b3y = 10 --40
+
+b4x = 100 --30
+b4y = 50 --4-
+
+b5x = 100 --60
+b5y = 10 --10
+
+b6x = 50 --30
+b6y = 10 --70
+
+b7x = 40 --50
+b7y = 100 --70
+
+b8x = 10 --80
+b8y = 40 --50
+
+b9x = 50 --40
+b9y = 110 --80
+
+-- pico initialization
+function _init()
+	start_game()
+end
+
+-- start game
+function start_game()
+	a_score = 0
+end
+
+-- update game
+function _update()
+
+ -- determine curr
+ if btnp(4) then
+		update_curr()
+ end
+
+	-- move the curr block
+	if btnp(0) then
+		move_h(-1)
+	elseif btnp(1) then
+		move_h(1)
+	elseif btnp(2) then
+		move_v(-1)
+	elseif btnp(3) then
+		move_v(1)
+	end
+	
+end
+
+-- draw game
+function _draw()
+	rectfill(0,0, 128,128, 5)
+	rectfill(30, 30, 89, 89, 6)
+	
+	draw_block1(b1x, b1y, c1, 1)
+	draw_block2(b2x, b2y, c2, 2)
+	draw_block3(b3x, b3y, c3, 3)
+	draw_block4(b4x, b4y, c4, 4)
+	draw_block5(b5x, b5y, c5, 5)
+	draw_block6(b6x, b6y, c6, 6)
+	draw_block7(b7x, b7y, c7, 7)
+	draw_block8(b8x, b8y, c8, 8)
+	draw_block9(b9x, b9y, c9, 9)
+	
+end
+
+-- draw block 1 (red)
+function draw_block1(bx, by, bc, num)
+	
+	if curr == num then
+		bc = cc
+	end
+	
+	rectfill(bx+00, by, bx+09, by+09, bc)
+	rectfill(bx+10, by, bx+19, by+09, bc)
+	rectfill(bx+20, by, bx+29, by+09, bc)
+	rectfill(bx+30, by, bx+39, by+09, bc)
+
+end
+
+
+
+
+-- draw block 2 (orange)
+function draw_block2(bx, by, bc, num)
+
+	if curr == num then
+		bc = cc
+	end
+	
+	rectfill(bx+00, by+00, bx+09, by+09, bc)
+	rectfill(bx+10, by+00, bx+19, by+09, bc)
+	rectfill(bx+00, by+10, bx+09, by+19, bc)
+	rectfill(bx+10, by+10, bx+19, by+19, bc)
+end
+
+
+
+
+-- draw block 3 - yellow
+function draw_block3(bx, by, bc, num)
+
+	if curr == num then
+		bc = cc
+	end
+	
+	rectfill(bx+00, by+00, bx+09, by+09, bc)
+	rectfill(bx+10, by+00, bx+19, by+09, bc)
+	rectfill(bx+20, by+00, bx+29, by+09, bc)
+	rectfill(bx+10, by+10, bx+19, by+19, bc)
+end
+
+
+
+-- draw block 4 - green
+function draw_block4(bx, by, bc, num)
+
+	if curr == num then
+		bc = cc
+	end
+	
+	rectfill(bx+00, by+00, bx+09, by+09, bc)
+	rectfill(bx+00, by+10, bx+09, by+19, bc)
+	rectfill(bx+00, by+20, bx+09, by+29, bc)
+	rectfill(bx+10, by+10, bx+19, by+19, bc)
+end
+
+
+
+
+-- draw block 5 - blue
+function draw_block5(bx, by, bc, num)
+
+	if curr == num then
+		bc = cc
+	end
+	
+	rectfill(bx+00, by+00, bx+09, by+09, bc)
+	rectfill(bx+10, by+00, bx+19, by+09, bc)
+	rectfill(bx+00, by+10, bx+09, by+19, bc)
+	rectfill(bx-10, by+10, bx-01, by+19, bc)
+end
+
+
+
+
+
+-- draw block 6 - purple
+function draw_block6(bx, by, bc, num)
+
+	if curr == num then
+		bc = cc
+	end
+	
+	rectfill(bx+00, by+00, bx+09, by+09, bc)
+	rectfill(bx+10, by+00, bx+19, by+09, bc)
+	rectfill(bx+10, by-10, bx+19, by-01, bc)
+	rectfill(bx+00, by+10, bx+09, by+19, bc)
+end
+
+
+
+
+-- draw block 7 - pink
+function draw_block7(bx, by, bc, num)
+	
+	if curr == num then
+		bc = cc
+	end
+	
+	rectfill(bx+00, by, bx+09, by+09, bc)
+	rectfill(bx+10, by, bx+19, by+09, bc)
+	rectfill(bx+20, by, bx+29, by+09, bc)
+	rectfill(bx+20, by-10, bx+29, by-01, bc)
+
+end
+
+
+
+-- draw block 8 - green
+function draw_block8(bx, by, bc, num)
+
+	if curr == num then
+		bc = cc
+	end
+	
+	rectfill(bx+00, by+00, bx+09, by+09, bc)
+	rectfill(bx+00, by+10, bx+09, by+19, bc)
+	rectfill(bx+00, by+20, bx+09, by+29, bc)
+	rectfill(bx+00, by+30, bx+09, by+39, bc)
+end
+
+
+
+
+
+-- draw block 9 (red)
+function draw_block9(bx, by, bc, num)
+	
+	if curr == num then
+		bc = cc
+	end
+	
+	rectfill(bx+00, by, bx+09, by+09, bc)
+	rectfill(bx+10, by, bx+19, by+09, bc)
+	rectfill(bx+20, by, bx+29, by+09, bc)
+	rectfill(bx+30, by, bx+39, by+09, bc)
+
+end
+
+
+
+
+
+-- increment curr
+function update_curr()
+ if curr == 9 then
+ 	curr = 1
+ else
+ 	curr += 1
+ end	
+end
+
+-- move curr block left + right
+function move_h(direct)
+
+	if curr == 1 then
+		b1x += (direct * 10)
+		draw_block1(b1x, b1y, c1, 1)
+	elseif curr == 2 then
+		b2x += (direct * 10)
+	elseif curr == 3 then
+		b3x += (direct * 10)
+	elseif curr == 4 then
+		b4x += (direct * 10)
+	elseif curr == 5 then
+		b5x += (direct * 10)
+	elseif curr == 6 then
+		b6x += (direct * 10)
+	elseif curr == 7 then
+		b7x += (direct * 10)
+	elseif curr == 8 then
+		b8x += (direct * 10)
+	elseif curr == 9 then
+		b9x += (direct * 10)
+	end
+	
+end
+
+-- move curr block up + down
+function move_v(direct)
+
+	if curr == 1 then
+		b1y += (direct * 10)
+	elseif curr == 2 then
+		b2y += (direct * 10)
+	elseif curr == 3 then
+		b3y += (direct * 10)
+	elseif curr == 4 then
+		b4y += (direct * 10)
+	elseif curr == 5 then
+		b5y += (direct * 10)
+	elseif curr == 6 then
+		b6y += (direct * 10)
+	elseif curr == 7 then
+		b7y += (direct * 10)
+	elseif curr == 8 then
+		b8y += (direct * 10)
+	elseif curr == 9 then
+		b9y += (direct * 10)
+	end
+	
+end
+
+-- determine color
+function determine_color(num)
+	if num == 1 then
+		return c1
+	end
+end
+
+
+
+
+
+__gfx__
+00000000000009000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+00000000999999990000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+00700700949999990000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+00077000099499990000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+00077000099994990000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+00700700909999990000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+00000000900900490000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+00000000900900000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+__map__
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000010100010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
